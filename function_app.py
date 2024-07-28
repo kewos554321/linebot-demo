@@ -2,7 +2,7 @@ import azure.functions as func
 import datetime
 import json
 import logging
-from core import handler
+# from core import handler
 
 app = func.FunctionApp()
 
@@ -27,24 +27,24 @@ def linebotHouseDreamer(req: func.HttpRequest) -> func.HttpResponse:
              status_code=200
         )
     
-@app.route(route="callback", auth_level=func.AuthLevel.ANONYMOUS)
-def linebot_message_handler(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Start handling linebot messages...')
+# @app.route(route="callback", auth_level=func.AuthLevel.ANONYMOUS)
+# def linebot_message_handler(req: func.HttpRequest) -> func.HttpResponse:
+#     logging.info('Start handling linebot messages...')
 
-    # get X-Line-Signature header value
-    signature = req.headers['X-Line-Signature']
+#     # get X-Line-Signature header value
+#     signature = req.headers['X-Line-Signature']
 
-    # get request body as text
-    body = req.get_body(as_text=True)
-    logging.info("Request body: " + body)
+#     # get request body as text
+#     body = req.get_body(as_text=True)
+#     logging.info("Request body: " + body)
 
-    try:
-        handler.handle(body, signature)
-    except ValueError:
-        pass
+#     try:
+#         handler.handle(body, signature)
+#     except ValueError:
+#         pass
 
-    # return func.HttpResponse(
-    #          "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-    #          status_code=200
-    #     )
-    return func.HttpResponse('OK')
+#     # return func.HttpResponse(
+#     #          "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
+#     #          status_code=200
+#     #     )
+#     return func.HttpResponse('OK')
