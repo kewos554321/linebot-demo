@@ -19,5 +19,5 @@ LINE_CHANNEL_ACCESS_TOKEN = os.getenv('LINE_CHANNEL_ACCESS_TOKEN')
 handler = WebhookHandler(LINE_CHANNEL_SECRET)
 configuration = Configuration(access_token=LINE_CHANNEL_ACCESS_TOKEN)
 
-from core.routes import function_app
-from core.routes import function_app_t1
+# from . import function_app
+# from core.routes import function_app_t1
