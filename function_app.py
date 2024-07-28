@@ -30,7 +30,7 @@ def linebotHouseDreamer(req: func.HttpRequest) -> func.HttpResponse:
 @app.route(route="callback", auth_level=func.AuthLevel.ANONYMOUS)
 def linebot_message_handler(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Start handling linebot messages...')
-
+    return func.HttpResponse('OK')
     # get X-Line-Signature header value
     signature = req.headers['X-Line-Signature']
 
