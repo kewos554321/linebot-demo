@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "linewebhookapp"
+version = "0.1.0"
+description = ""
+authors = ["Jay Wang <jay.wang@wpgholdings.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+azure-functions = "^1.20.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
