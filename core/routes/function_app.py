@@ -2,6 +2,7 @@ import azure.functions as func
 import datetime
 import json
 import logging
+from core import handler
 
 app = func.FunctionApp()
 
@@ -26,23 +27,24 @@ def linebotHouseDreamer(req: func.HttpRequest) -> func.HttpResponse:
              status_code=200
         )
     
-@app.route(route="linebot-housedreamer-email", auth_level=func.AuthLevel.ANONYMOUS)
-def linebotHouseDreamerByEmail(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+@app.route(route="callback", auth_level=func.AuthLevel.ANONYMOUS)
+def linebot_message_handler(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Start handling linebot messages...')
 
-    email = req.params.get('email')
-    if not email:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            pass
-        else:
-            email = req_body.get('email')
+    # get X-Line-Signature header value
+    signature = req.headers['X-Line-Signature']
 
-    if email:
-        return func.HttpResponse(f"Hello, this is my email={email}")
-    else:
-        return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=200
-        )
+    # get request body as text
+    body = req.get_body(as_text=True)
+    logging.info("Request body: " + body)
+
+    try:
+        handler.handle(body, signature)
+    except ValueError:
+        pass
+
+    # return func.HttpResponse(
+    #          "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
+    #          status_code=200
+    #     )
+    return func.HttpResponse('OK')
