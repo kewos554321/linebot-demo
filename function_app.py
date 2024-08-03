@@ -2,7 +2,7 @@ import azure.functions as func
 import datetime
 import json
 import logging
-# from core import handler
+from core import handler
 
 app = func.FunctionApp()
 
@@ -40,7 +40,7 @@ def linebot_message_handler(req: func.HttpRequest) -> func.HttpResponse:
     # logging.info("Request body: " + body)
 
     try:
-        # handler.handle(body, signature)
+        handler.handle(body, signature)
         pass
     except ValueError:
         pass
