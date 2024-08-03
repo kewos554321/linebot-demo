@@ -33,14 +33,14 @@ def linebot_message_handler(req: func.HttpRequest) -> func.HttpResponse:
     # get X-Line-Signature header value
     signature = req.headers.get('x-line-signature')
     logging.info(f'headers={signature}') 
-    logging.info(f'handler={handler}') 
+    # logging.info(f'handler={handler}') 
 
     # get request body as text
     body = req.get_body().decode('utf-8')
     # logging.info("Request body: " + body)
 
     try:
-        # handler.handle(body, signature)
+        handler.handle(body, signature)
         pass
     except ValueError:
         pass
