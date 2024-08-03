@@ -37,7 +37,7 @@ class MessageEventHandler():
     def handle_message(self, event):
         print("\n (TextMessageContent) event=", event)
         self.retrieve_event_attr(event)
-        print("self.msg_text=", self.msg_text)
+        # print("self.msg_text=", self.msg_text)
         if self.event_message_text == "help":
             self.text_message_service.reply_text_message_with_resource(self.event_reply_token, "help.json")
         elif self.event_message_text == "test TextMessageService":
@@ -107,6 +107,6 @@ class MessageEventHandler():
         self.event_message_emojis = getattr(event.message, 'emojis', None)
         self.event_message_mention = getattr(event.message, 'mention', None)
         self.event_message_quote_token = getattr(event.message, 'quote_token', None)
-        print(f"\n===> src_user_id={self.src_user_id}, src_group_id={self.src_group_id}, msg_text={self.msg_text}, reply_token={self.reply_token}")
+        # print(f"\n===> src_user_id={self.src_user_id}, src_group_id={self.src_group_id}, msg_text={self.msg_text}, reply_token={self.reply_token}")
 
 
