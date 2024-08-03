@@ -2,12 +2,12 @@ import azure.functions as func
 import datetime
 import json
 import logging
-from core import handler
+# from core import handler
 
 app = func.FunctionApp()
 
 @app.route(route="linebot-housedreamer", auth_level=func.AuthLevel.ANONYMOUS)
-def linebotHouseDreamer(req: func.HttpRequest) -> func.HttpResponse:
+def linebot_housedreamer(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     name = req.params.get('name')
@@ -40,7 +40,7 @@ def linebot_message_handler(req: func.HttpRequest) -> func.HttpResponse:
     # logging.info("Request body: " + body)
 
     try:
-        handler.handle(body, signature)
+        # handler.handle(body, signature)
         pass
     except ValueError:
         pass
