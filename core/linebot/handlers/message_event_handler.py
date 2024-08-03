@@ -15,21 +15,34 @@ class MessageEventHandler():
         self.text_message_service = TextMessageService()
 
         ''' Params '''
-        self.src_user_id = None
-        self.src_group_id = None
-        self.src_type = None
-        self.msg_text = None
-        self.reply_token = None
+        self.event_type = None
+        self.event_source = None
+        self.event_source_type = None
+        self.event_source_user_id = None
+        self.event_source_group_id = None
+        self.event_timestamp = None
+        self.event_webhook_event_id = None
+        self.event_delivery_context = None
+        self.event_delivery_context_is_redelivery = None
+        
+        self.event_reply_token = None
+        self.event_message = None
+        self.event_message_type = None
+        self.event_message_id = None
+        self.event_message_text = None
+        self.event_message_emojis = None
+        self.event_message_mention = None
+        self.event_message_quote_token = None
 
     def handle_message(self, event):
         print("\n (TextMessageContent) event=", event)
         self.retrieve_event_attr(event)
         print("self.msg_text=", self.msg_text)
         if self.event_message_text == "help":
-            self.text_message_service.reply_text_message_with_resource(self.reply_token, "help.json")
+            self.text_message_service.reply_text_message_with_resource(self.event_reply_token, "help.json")
         elif self.event_message_text == "test TextMessageService":
             print("start to test TextMessageService")
-            self.text_message_service.reply_text_message_with_resource(self.reply_token, "test_text_message.json") 
+            self.text_message_service.reply_text_message_with_resource(self.event_reply_token, "test_text_message.json") 
         # source_id = src_user_id if src_group_id is None else src_group_id
         # if msg_text == "h": 
         #     filename = "help.json"
