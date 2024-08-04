@@ -4,10 +4,11 @@ from .abstract_message import AbstractMessageService
 class ImageMessageService(AbstractMessageService):
 
     def __init__(self):
+        self.IMAGE_MESSAGE_TEMPLATE_URL = "static/templates/image_messages"
         super().__init__()
 
     def reply_image_message_with_resource(self, reply_token, filename):
-        data = self.common_util.handle_json_file("image_messages", filename)
+        data = self.common_util.handle_json_file(self.IMAGE_MESSAGE_TEMPLATE_URL, filename)
         print("\n=>\nimage-data: ", data)
         messages = []
         messages.append(

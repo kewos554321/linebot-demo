@@ -6,10 +6,11 @@ class TemplateMessageService(AbstractMessageService):
 
     def __init__(self):
         super().__init__()
+        self.TEMPLATE_MESSAGE_TEMPLATE_URL = "static/templates/template_messages"
         self.action_service = ActionService()
 
     def reply_template_message_with_resource(self, reply_token, filename):
-        data = self.common_util.handle_json_file("template_messages", filename)
+        data = self.common_util.handle_json_file(self.TEMPLATE_MESSAGE_TEMPLATE_URL, filename)
         print("\n=>\ntemplate-data: ", data)
         messages = []
         messages.append(self.create_template_message(data))

@@ -4,10 +4,11 @@ from .abstract_message import AbstractMessageService
 class FlexMessageService(AbstractMessageService):
 
     def __init__(self):
+        self.FLEX_MESSAGE_TEMPLATE_URL = "static/templates/flex_messages"
         super().__init__()
 
     def reply_flex_message_with_resource(self, reply_token, filename):
-        data = self.common_util.handle_json_file("flex_messages", filename)
+        data = self.common_util.handle_json_file(self.FLEX_MESSAGE_TEMPLATE_URL, filename)
         print("\n=>\nflex-data: ", data)
         data_contents = self.create_content(data)
         messages = []

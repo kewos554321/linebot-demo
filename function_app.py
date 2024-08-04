@@ -1,6 +1,4 @@
 import azure.functions as func
-import datetime
-import json
 import logging
 from core import handler
 
@@ -32,8 +30,7 @@ def linebot_message_handler(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Start handling linebot messages...')
     # get X-Line-Signature header value
     signature = req.headers.get('x-line-signature')
-    logging.info(f'headers={signature}') 
-    # logging.info(f'handler={handler}') 
+    logging.info(f'signature={signature}') 
 
     # get request body as text
     body = req.get_body().decode('utf-8')

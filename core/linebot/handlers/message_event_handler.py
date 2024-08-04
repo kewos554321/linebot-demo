@@ -6,13 +6,17 @@ from core.linebot.services.image_message import ImageMessageService
 from core.linebot.services.sticker_message import StickerMessageService
 from core.linebot.services.flex_message import FlexMessageService
 from core.linebot.services.common_features import CommonFeaturesService
-from core.utils import common as cmn
 
 class MessageEventHandler():
 
     def __init__(self):
         ''' Services '''
         self.text_message_service = TextMessageService()
+        self.template_message_service = TemplateMessageService()
+        self.location_message_service = LocationMessageService()
+        self.image_message_service = ImageMessageService()
+        self.sticker_message_service = StickerMessageService()
+        self.flex_message_service = FlexMessageService()
 
         ''' Params '''
         self.event_type = None
@@ -40,9 +44,23 @@ class MessageEventHandler():
         # print("self.msg_text=", self.msg_text)
         if self.event_message_text == "help":
             self.text_message_service.reply_text_message_with_resource(self.event_reply_token, "help.json")
-        elif self.event_message_text == "test TextMessageService":
+        # elif "test TextMessageService" in self.event_message_text:
+        #     print("start to test TextMessageService")
+        #     self.text_message_service.reply_text_message_with_resource(self.event_reply_token, "test_text_message.json") 
+        elif "test TextMessageService" in self.event_message_text:
             print("start to test TextMessageService")
-            self.text_message_service.reply_text_message_with_resource(self.event_reply_token, "test_text_message.json") 
+            self.text_message_service.reply_text_message(self.event_reply_token, "這是我的測試而已") 
+        elif "test TemplateMessageService" in self.event_message_text:
+            self.template_message_service.show_test_confirm_template_message(self.event_reply_token)
+        elif "test LocationMessageService" in self.event_message_text:
+            print("start to test LocationMessageService")
+            self.location_message_service.show_test_location_message(self.event_reply_token)
+        elif "test ImageMessageService" in self.event_message_text:
+            print("start to test ImageMessageService")
+            self.image_message_service.show_sushi_image_message(self.event_reply_token)
+        elif "test FlexMessageService" in self.event_message_text:
+            print("start to test FlexMessageService")
+            self.flex_message_service.show_carousel_flex_message_test(self.event_reply_token)
         # source_id = src_user_id if src_group_id is None else src_group_id
         # if msg_text == "h": 
         #     filename = "help.json"

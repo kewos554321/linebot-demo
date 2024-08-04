@@ -4,10 +4,11 @@ from .abstract_message import AbstractMessageService
 class LocationMessageService(AbstractMessageService):
 
     def __init__(self):
+        self.LOCATION_MESSAGE_TEMPLATE_URL = "static/templates/location_messages"
         super().__init__()
 
     def reply_location_message_with_resource(self, reply_token, filename):
-        data = self.common_util.handle_json_file("location_messages", filename)
+        data = self.common_util.handle_json_file(self.LOCATION_MESSAGE_TEMPLATE_URL, filename)
         print("\n=>\nlocation-data: ", data)
         messages = []
         messages.append(

@@ -1,6 +1,6 @@
 from abc import ABC, abstractclassmethod
 from linebot.v3.messaging import ApiClient, MessagingApi, ReplyMessageRequest, TextMessage
-from core.utils.common import CommonUtil
+from core.linebot.utils import CommonUtil
 
 class AbstractMessageService(ABC):
 

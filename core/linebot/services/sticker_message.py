@@ -4,10 +4,11 @@ from .abstract_message import AbstractMessageService
 class StickerMessageService(AbstractMessageService):
 
     def __init__(self):
+        self.STICKER_MESSAGE_TEMPLATE_URL = "static/templates/sticker_messages"
         super().__init__()
 
     def reply_sticker_message_with_resource(self, reply_token, filename):
-        data = self.common_util.handle_json_file("sticker_messages", filename)
+        data = self.common_util.handle_json_file(self.STICKER_MESSAGE_TEMPLATE_URL, filename)
         print("\n=>\nsticker-data: ", data)
         messages = []
         messages.append(
